@@ -1,15 +1,27 @@
 #!/bin/python3:
 def find_smallest_positive(xs):
-    left, right = 0, len(xs) - 1
-    while left <= right:
+    if len(xs) == 0:
+        return None
+    
+    def go(left, right):
+        if xs[left] > 0:
+            return left
+        if left == right:
+            return None
+        
         mid = (left + right) // 2
+        
+        if xs[mid] > 0 and (mid == left or xs[mid-1] <= 0):
+            return mid
+        
         if xs[mid] <= 0:
             left = mid + 1
-        elif xs[mid - 1] <= 0:
-            return mid
         else:
             right = mid - 1
-    return None
+        
+        return go(left, right)
+    
+    return go(0, len(xs) - 1)
 
 def count_repeats(xs, x):
     def find_first(xs, x):
