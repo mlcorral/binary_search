@@ -35,6 +35,7 @@ def count_repeats(arr, n):
     else:
         return count_repeats(arr[1:], n)
 
+
 def argmin(f, lo, hi, epsilon=1e-3):
     while hi - lo > epsilon:
         mid1 = lo + ((hi - lo) / 3)
