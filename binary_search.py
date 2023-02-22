@@ -48,9 +48,9 @@ def count_repeats(xs, x):
             right = mid - 1
         return go(left, right)
 
-    a = go(0, len(xs)-1)
+    a = go(0, len(xs) - 1)
 
-    def go2(left,right):
+    def go2(left, right):
         if left == right:
             if xs[left] == x:
                 return left
@@ -100,4 +100,3 @@ def find_boundaries(f):
 def argmin_simple(f, epsilon=1e-3):
     lo, hi = find_boundaries(f)
     return argmin(f, lo, hi, epsilon)
-
