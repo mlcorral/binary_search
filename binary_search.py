@@ -13,7 +13,7 @@ def find_smallest_positive(xs):
 
         mid = (left + right) >> 1
 
-        if xs[mid] > 0 and (mid == left or xs[mid-1] <= 0):
+        if xs[mid] > 0 and (mid == left or xs[mid - 1] <= 0):
             return mid
 
         if xs[mid] <= 0:
