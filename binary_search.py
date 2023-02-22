@@ -58,7 +58,7 @@ def count_repeats(xs, x):
                 return None
         result = None
         mid = (left + right) // 2
-        if xs[mid] == x: 
+        if xs[mid] == x:
             result = mid
             if xs[mid + 1] == x and (mid + 1) < len(xs):
                 left = mid + 1
