@@ -91,12 +91,41 @@ def argmin(f, lo, hi, epsilon=1e-3):
 
 
 def find_boundaries(f):
-    lo, hi = -1, 1
-    while f(hi) < f(lo):
-        lo, hi = hi, (hi << 1)
-    return lo, hi
+    '''
+    Returns a tuple (lo,hi).
+    If f is a convex function, then the minimum
+    is guaranteed to be between lo and hi.
+    This function is useful for initializing argmin.
+    HINT:
+    Begin with initial values lo=-1, hi=1.
+    Let mid = (lo+hi)/2
+    if f(lo) > f(mid):
+        recurse with lo*=2
+    elif f(hi) < f(mid):
+        recurse with hi*=2
+    else:
+        you're done; return lo,hi
+    '''
+    def go(left, right):
+        mid = (left + right) / 2
+        if f(left) < f(mid):
+            return go(2 * left, right)
+        elif f(right) < f(mid):
+            return go(left, 2 * right)
+        else:
+            return (left, right)
+    return go(-1, 1)
 
 
 def argmin_simple(f, epsilon=1e-3):
+    '''
+    This function is like argmin, but it internally
+    uses the find_boundaries function so that
+    you do not need to specify lo and hi.
+    NOTE:
+    There is nothing to implement for this function.
+    If you implement the find_boundaries function correctly,
+    then this function will work correctly too.
+    '''
     lo, hi = find_boundaries(f)
     return argmin(f, lo, hi, epsilon)
